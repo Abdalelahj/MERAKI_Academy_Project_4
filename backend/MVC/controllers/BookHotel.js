@@ -1,6 +1,6 @@
-const BookModel=require("../models/BHotelSchema")
-
-const BookHotel = (req, res ,next) => {
+const BookModel = require("../models/BHotelSchema");
+const userCardModel = require("../models/userCardSchema");
+const BookHotel = (req, res, next) => {
   const userId = req.token.userId;
   const {
     firstName,
@@ -9,7 +9,7 @@ const BookHotel = (req, res ,next) => {
     country,
     phoneNumber,
     privateOrders,
-    hotelId
+    hotelId,
   } = req.body;
 
   const newBook = new BookModel({
@@ -20,12 +20,26 @@ const BookHotel = (req, res ,next) => {
     phoneNumber,
     privateOrders,
     userId: userId,
-    hotelId
+    hotelId,
   });
 
   newBook
     .save()
     .then((result) => {
+      userCardModel
+      .findOneAndUpdate(
+        { userId: userId },
+        { hotelId: hotelId },
+        { new: true }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(error=>{
+        const err = new Error(error.message);
+      err.status = 500;
+      next(err);
+      })
       res.status(201).json({
         success: true,
         message: "hotel booked successfully",
@@ -33,22 +47,16 @@ const BookHotel = (req, res ,next) => {
       });
     })
     .catch((error) => {
-      const err =new Error(error.message)
-      err.status=500
-      next(err)
-      // res.status(500).json({
-      //   success: false,
-      //   message: `Server Error`,
-      //   error: err.message
-      // });
+      const err = new Error(error.message);
+      err.status = 500;
+      next(err);
     });
 };
 
-const getBookedHotels = (req, res) => {
-  BookModel
-    .find({})
-    .populate("user","firstName lastName email")
-    .populate("hotelId","-__v -image")
+const getBookedHotels = (req, res, next) => {
+  BookModel.find({})
+    .populate("userId", "firstName lastName email")
+    .populate("hotelId", "-__v -image")
     .then((result) => {
       if (result.length) {
         res.status(200).json({
@@ -61,15 +69,11 @@ const getBookedHotels = (req, res) => {
         });
       }
     })
-    .catch(error=>{
-      const err =new Error(error.message)
-      err.status=500
-      next(err)
-    })
-    
+    .catch((error) => {
+      const err = new Error(error.message);
+      err.status = 500;
+      next(err);
+    });
 };
 
-
-module.exports = { BookHotel,
-  getBookedHotels
- };
+module.exports = { BookHotel, getBookedHotels };

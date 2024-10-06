@@ -20,6 +20,9 @@ const PORT = 5000;
 const hotelRouter = require("./MVC/Routers/hotels");
 app.use("/hotel", hotelRouter);
 
+const paymentRouter =require("./MVC/Routers/payment")
+app.use("/pay",paymentRouter)
+
 app.use((err,req,res,next)=>{
   res.status(err.status).json({
     message:err.message

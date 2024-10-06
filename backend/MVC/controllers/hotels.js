@@ -1,18 +1,7 @@
 const { log } = require("console");
 const hotelsModel = require("../models/HotelsSchema");
-const fs = require("fs");
 
 const addHotel = async (req, res) => {
-  //   const readFile =  () => {
-  //     try {
-  //       const data =  fs.readFileSync("MVC/controllers/images.txt");
-  //      return data.toString()
-
-  //     } catch (err) {
-  //       throw err;
-  //     }
-  //   };
-
   const {
     image,
     destination,

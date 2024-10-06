@@ -1,7 +1,7 @@
 const mongoose=require("mongoose")
 
 const hotelSchema=new mongoose.Schema({
-image:[{type:Buffer}],
+image:{type:String},
 destination:{type:String,required:true},
 dateFrom:{type:String,required:true},
 dateTo:{type:String},

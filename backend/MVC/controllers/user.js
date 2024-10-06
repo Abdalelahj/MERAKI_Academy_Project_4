@@ -1,6 +1,8 @@
 const userModel = require("../models/UserSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const userCardModel = require("../models/userCardSchema");
+
 const register = (req, res) => {
   const {
     firstName,
@@ -40,14 +42,24 @@ const register = (req, res) => {
 };
 
 const login = async (req, res) => {
-const email=req.body.email.toLowerCase()
-const password=req.body.password
+  const email = req.body.email.toLowerCase();
+  const password = req.body.password;
   try {
     const found = await userModel.findOne({ email });
     if (found) {
       try {
         const valid = await bcrypt.compare(password, found.password);
         if (valid) {
+          const newUserCard = new userCardModel({
+            userId: found._id,
+          });
+          try {
+            await newUserCard.save();
+          } catch (error) {
+            res.status(500).json({
+              msg: err.message,
+            });
+          }
           const payload = {
             userId: found._id,
             firstName: found.firstName,
@@ -63,6 +75,7 @@ const password=req.body.password
             success: true,
             msg: "user logged in successfully",
             token: token,
+            user_card:newUserCard
           });
         } else {
           res.status(403).json({
