@@ -11,6 +11,7 @@ const BookFlightSchema = new mongoose.Schema({
   passportNumber: { type:String ,required:true},
   expiry: { type: String,required:true },
   flightId: { type: mongoose.Schema.Types.ObjectId, ref: "Flights" },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 module.exports = new mongoose.model("BookFlight", BookFlightSchema);

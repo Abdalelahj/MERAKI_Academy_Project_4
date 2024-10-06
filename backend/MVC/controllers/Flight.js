@@ -1,7 +1,6 @@
 const flightModel = require("../models/FlightSchema");
 
 const flights = (req, res) => {
-  const  userId=req.token.userId
   const {
     destinationFrom,
     destinationTo,
@@ -10,7 +9,7 @@ const flights = (req, res) => {
     timeFrom,
     timeTo,
     company,
-    price
+    price,
   } = req.body;
 
   const newFlight = new flightModel({
@@ -22,7 +21,6 @@ const flights = (req, res) => {
     dateReturning,
     company,
     price,
-    user:userId,
   });
   newFlight
     .save()
@@ -43,14 +41,10 @@ const flights = (req, res) => {
 };
 
 const getFlights = (req, res) => {
-  const {   destinationFrom,
-    destinationTo,
-    dateLeaving,
-    dateReturning,
-  } = req.body;
+  const { destinationFrom, destinationTo, dateLeaving, dateReturning } =
+    req.body;
   flightModel
-    .find({ destinationFrom, destinationTo, dateLeaving , dateReturning})
-    .populate("user","-__v -password")
+    .find({ destinationFrom, destinationTo, dateLeaving, dateReturning })
     .then((result) => {
       if (result.length) {
         res.status(200).json({
@@ -59,7 +53,7 @@ const getFlights = (req, res) => {
         });
       } else {
         res.status(404).json({
-          flight: "No result found"
+          flight: "No result found",
         });
       }
     })
@@ -72,13 +66,9 @@ const getFlights = (req, res) => {
     });
 };
 const getSingleFlights = (req, res) => {
-  const {   destinationFrom,
-    destinationTo,
-    dateLeaving,
-  } = req.body;
+  const { destinationFrom, destinationTo, dateLeaving } = req.body;
   flightModel
     .find({ destinationFrom, destinationTo, dateLeaving })
-    .populate("user","-__v -password")
     .then((result) => {
       if (result.length) {
         res.status(200).json({
@@ -100,4 +90,4 @@ const getSingleFlights = (req, res) => {
     });
 };
 
-module.exports = { flights, getFlights,getSingleFlights };
+module.exports = { flights, getFlights, getSingleFlights };

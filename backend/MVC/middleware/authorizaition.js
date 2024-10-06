@@ -1,6 +1,6 @@
 const author = (string) => {
   return (req, res, next) => {
-    const perm = req.token.role.permissions;
+    const perm = req.token.permissions;
     if (perm.includes(string)) {
       next();
     } else {

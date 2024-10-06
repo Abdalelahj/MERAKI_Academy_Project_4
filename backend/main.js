@@ -13,8 +13,18 @@ app.use("/flight", flightRouter);
 const BookFlightRouter = require("./MVC/Routers/BookFlight");
 app.use("/book", BookFlightRouter);
 
+const BookHotelRouter = require("./MVC/Routers/BookHotel");
+app.use("/bookHotel", BookHotelRouter);
 const PORT = 5000;
 
+const hotelRouter = require("./MVC/Routers/hotels");
+app.use("/hotel", hotelRouter);
+
+app.use((err,req,res,next)=>{
+  res.status(err.status).json({
+    message:err.message
+  })
+})
 app.listen(PORT, () => {
   console.log(`app listening on http://localhost:${PORT}`);
 });

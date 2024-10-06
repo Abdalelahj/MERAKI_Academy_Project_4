@@ -5,8 +5,8 @@ const { flights ,getFlights,getSingleFlights} = require("../controllers/Flight")
 const auth =require("../middleware/authentication")
 
 flightRouter.post("/", auth,flights);
-flightRouter.get("/d", auth,getFlights);
-flightRouter.get("/s", auth,getSingleFlights);
+flightRouter.get("/d", getFlights);
+flightRouter.get("/s",getSingleFlights);
 
 
 
