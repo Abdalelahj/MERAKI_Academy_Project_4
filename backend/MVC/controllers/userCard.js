@@ -21,6 +21,25 @@ userCardModel.find({})
 })
 }
 
+const updateInfo =(req,res,next)=>{
+    const userId=req.token.userId
+    const{flightId ,hotelId}=req.body
+    userCardModel.findOneAndUpdate({userId:userId},{
+        flightId:flightId,
+        hotelId:hotelId
+    },
+{new:true})
+.then(result=>{
+    res.status(202).json({
+        success:true,
+        updated :result
+    })
+})
+.catch(error=>{
+    const err = new Error(error.message);
+    err.status = 500;
+    next(err);
+})
+}
 
-
-module.exports={getInfo}
+module.exports={getInfo,updateInfo}
