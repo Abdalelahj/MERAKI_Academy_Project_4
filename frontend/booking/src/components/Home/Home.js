@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Results from "../Results/Results";
 import Popup from "../popup/Popup";
-import "./home.css"
+import "./home.css";
 const Home = () => {
   const {
     setToken,
@@ -61,7 +61,6 @@ const Home = () => {
       navigate(`/results `);
     }
   };
-
 
   const flightSearch = () => {
     setClicked(true);
@@ -135,7 +134,7 @@ const Home = () => {
           </label>
           <br></br>
           <button onClick={hotelSearch}>Search</button>
-          {clicked && <Popup />}
+          {clicked && <Popup msg={"fill the search field "} />}
         </>
       )}
       {showFlight && (
@@ -172,7 +171,7 @@ const Home = () => {
           </label>
           <br></br>
           <button onClick={flightSearch}>Search</button>
-          {clicked && <Popup />}
+          {clicked && <Popup msg={"fill the search field "} />}
         </>
       )}
     </div>

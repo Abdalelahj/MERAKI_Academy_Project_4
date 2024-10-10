@@ -1,27 +1,42 @@
-import React ,{ useState, useContext }from 'react'
+import React, { useState, useContext } from "react";
 import { sharedInfoContext } from "../../App";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const { setToken, setLogged, logged } = useContext(sharedInfoContext);
-  // console.log(logged);
   return (
     <div>
-      <p>Navbar</p>  
-      {logged&& 
-       <button onClick={()=>{
-      setToken(null);
-       localStorage.clear("token")
-       setLogged(false)
-       localStorage.clear("logged")
-      navigate("/login")
+      <p>Navbar</p>
 
-    }}>log out</button>
-  }
-  
-      </div>
+      <br></br>
+      <Link to={"/"}>Home</Link>
+      <br></br>
+      <Link to={"/"}> سفرني</Link>
+      {logged ? (
+        <>
+          <Link to="/profile">Profile</Link>
+          <button
+            onClick={() => {
+              setToken(null);
+              setLogged(false);
+              localStorage.clear();
+              navigate("/login");
+            }}
+          >
+            log out
+          </button>
+        </>
+      ) : (
+        <>
+          {" "}
+          <Link to={"/login"}>Login</Link>
+          <br></br>
+          <Link to={"/register"}>sign up</Link>
+          <br></br>
+        </>
+      )}
+    </div>
+  );
+};
 
-  )
-}
-
-export default Navbar
+export default Navbar;

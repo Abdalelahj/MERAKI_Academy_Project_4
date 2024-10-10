@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./popup.css";
-const Popup = () => {
+const Popup = ({msg}) => {
   const [hide, setHide] = useState(true);
  
   const hideMe = () => {
@@ -12,7 +12,7 @@ const Popup = () => {
       {hide && (
         <div className={hide ? "popup" : "block"} onClick={hideMe}>
           <span className="popuptext" id="myPopup">
-            fill the search fields
+            {msg}
           </span>
         </div>
       )}

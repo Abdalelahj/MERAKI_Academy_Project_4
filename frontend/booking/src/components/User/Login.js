@@ -19,11 +19,11 @@ const Login = () => {
           setMsg(result.data.msg);
           navigate("/")
           setLogged(true);
-          localStorage.setItem("logged", logged);
+          localStorage.setItem("logged", true);
 
         })
         .catch((err) => {
-          console.log(err.response.data.msg);
+          console.log(err);
           setMsg(err.response.data.msg);
         });
     } else {

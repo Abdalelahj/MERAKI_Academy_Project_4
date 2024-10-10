@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { sharedInfoContext } from "../../App";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
+import Popup from "../popup/Popup";
 
 const BookHotel = () => {
   const { token } = useContext(sharedInfoContext);
@@ -9,6 +10,8 @@ const BookHotel = () => {
   const [bookInfo, setBookInfo] = useState({
     hotelId: id,
   });
+  const [booked, setBooked] = useState(false);
+const navigate=useNavigate()
 const handleBooking=()=>{
     axios
     .post("http://localhost:5000/bookHotel", bookInfo, {
@@ -18,6 +21,10 @@ const handleBooking=()=>{
     })
     .then((results) => {
       console.log(results.data);
+      setBooked(true)
+      setTimeout(() => {
+        navigate(`/pay/${id}`)
+      }, 2000);
     })
     .catch((err) => {
       console.log(err);
@@ -92,6 +99,7 @@ const handleBooking=()=>{
       </label>
       <br></br>
       <button onClick={handleBooking}>book hotel</button>
+      {booked &&<Popup  msg={"Hotel Booked successfully"} />}
     </div>
   );
 };

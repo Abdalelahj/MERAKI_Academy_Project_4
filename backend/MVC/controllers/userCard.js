@@ -3,7 +3,7 @@ const userCardModel = require("../models/userCardSchema");
 const getInfo = (req, res) => {
   userCardModel
     .find({})
-    .populate("userId", "firstName lastName email")
+    .populate("userId")
     .populate("hotelId", "price title")
     .populate("flightId", "price company")
     .then((result) => {

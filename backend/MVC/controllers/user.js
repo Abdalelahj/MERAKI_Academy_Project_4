@@ -56,16 +56,27 @@ const login = async (req, res) => {
       try {
         const valid = await bcrypt.compare(password, found.password);
         if (valid) {
-          const newUserCard = new userCardModel({
-            userId: found._id,
-          });
           try {
-            await newUserCard.save();
+            const userSearch = await userCardModel.find({userId:found._id})
+            if(!userSearch.length){
+              const newUserCard = new userCardModel({
+                userId: found._id,
+              });
+              try {
+                await newUserCard.save();
+              } catch (error) {
+                res.status(500).json({
+                  msg: err.message,
+                });
+              }
+            }
           } catch (error) {
             res.status(500).json({
-              msg: err.message,
-            });
+                  msg: err.message,
+                });
           }
+        
+       
           const payload = {
             userId: found._id,
             firstName: found.firstName,
@@ -81,7 +92,7 @@ const login = async (req, res) => {
             success: true,
             msg: "user logged in successfully",
             token: token,
-            user_card:newUserCard
+            // user_card:newUserCard
           });
         } else {
           res.status(403).json({
