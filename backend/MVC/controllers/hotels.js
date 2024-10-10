@@ -45,10 +45,9 @@ const addHotel = async (req, res) => {
 };
 
 const getHotels = (req, res) => {
-  const { destination, dateFrom, numberOfRooms } = req.body;
 
   hotelsModel
-    .find({ destination, dateFrom, numberOfRooms })
+    .find({})
     .then((result) => {
       if (result.length) {
         res.status(200).json({
@@ -57,7 +56,7 @@ const getHotels = (req, res) => {
         });
       }else{
         res.status(401).json({
-            message: "No hotels found",
+            message: "No hotels try found",
           });
       }
     })
@@ -70,4 +69,30 @@ const getHotels = (req, res) => {
     });
 };
 
-module.exports = { addHotel, getHotels };
+const getHotelsById =(req,res)=>{
+const id =req.params.id
+hotelsModel.find({_id:id})
+.then(result=>{
+  if (result.length) {
+    res.status(200).json({
+      success: true,
+      search: result,
+    });
+  }else{
+    res.status(401).json({
+        message: "No hotels try found",
+      });
+  }  
+})
+.catch(err=>{
+  res.status(500).json({
+    success: false,
+    message: `Server Error`,
+    error: err.message,
+  });
+})
+}
+
+
+
+module.exports = { addHotel, getHotels ,getHotelsById};

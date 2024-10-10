@@ -1,9 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
 const db = require("./MVC/models/db");
 
 app.use(express.json());
+app.use(cors());
+
 const userRouter = require("./MVC/Routers/user");
 app.use("/user", userRouter);
 
@@ -30,7 +33,6 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
-
 
 const PORT = 5000;
 

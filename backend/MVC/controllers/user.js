@@ -12,8 +12,8 @@ const register = (req, res) => {
     password,
     age,
     country,
-    gender,
     phoneNumber,
+    gender,
   } = req.body;
   const newUser = new userModel({
     firstName,
@@ -23,8 +23,8 @@ const register = (req, res) => {
     password,
     age,
     country,
-    gender,
     phoneNumber,
+    gender,
   });
   newUser
     .save()
@@ -35,6 +35,12 @@ const register = (req, res) => {
       });
     })
     .catch((err) => {
+      if (err.keyPattern) {
+        return res.status(409).json({
+          success: false,
+          message: `The email already exists`,
+        });
+      }
       res.status(500).json({
         msg: err.message,
       });

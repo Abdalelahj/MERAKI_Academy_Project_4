@@ -1,12 +1,12 @@
 const express = require("express");
 
 const flightRouter = express.Router();
-const { flights ,getFlights,getSingleFlights} = require("../controllers/Flight");
+const { flights ,getFlights,getSingleFlightById} = require("../controllers/Flight");
 const auth =require("../middleware/authentication")
 
 flightRouter.post("/", auth,flights);
-flightRouter.get("/d", getFlights);
-flightRouter.get("/s",getSingleFlights);
+flightRouter.get("/", getFlights);
+flightRouter.get("/:id",getSingleFlightById);
 
 
 

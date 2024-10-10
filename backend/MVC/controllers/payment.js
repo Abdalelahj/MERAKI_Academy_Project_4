@@ -60,6 +60,8 @@ const pay = async (req, res) => {
 };
 
 const getPayment = async (req, res) => {
+  // userId=req.token.userId 
+  // for later use to get all payment for the logged in user
   try {
     const result = await paymentModel
       .find({})

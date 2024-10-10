@@ -41,10 +41,9 @@ const flights = (req, res) => {
 };
 
 const getFlights = (req, res) => {
-  const { destinationFrom, destinationTo, dateLeaving, dateReturning } =
-    req.body;
+/* { destinationFrom, destinationTo, dateLeaving, dateReturning } */
   flightModel
-    .find({ destinationFrom, destinationTo, dateLeaving, dateReturning })
+    .find({})
     .then((result) => {
       if (result.length) {
         res.status(200).json({
@@ -65,10 +64,11 @@ const getFlights = (req, res) => {
       });
     });
 };
-const getSingleFlights = (req, res) => {
-  const { destinationFrom, destinationTo, dateLeaving } = req.body;
+const getSingleFlightById = (req, res) => {
+  // const { destinationFrom, destinationTo, dateLeaving } = req.body;
+  const id=req.params.id
   flightModel
-    .find({ destinationFrom, destinationTo, dateLeaving })
+    .find({_id:id})
     .then((result) => {
       if (result.length) {
         res.status(200).json({
@@ -90,4 +90,4 @@ const getSingleFlights = (req, res) => {
     });
 };
 
-module.exports = { flights, getFlights, getSingleFlights };
+module.exports = { flights, getFlights, getSingleFlightById };
