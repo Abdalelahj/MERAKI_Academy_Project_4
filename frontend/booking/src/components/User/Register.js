@@ -1,25 +1,43 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Select from "react-select";
-
+import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [userInfo, setUserInfo] = useState({ gender: "Male" });
 
-  const MyOptions = [
-    { value: "Male", label: "Male" },
-    { value: "female", label: "Female" },
-  ];
-  
+  const navigate = useNavigate();
+
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "project_4");
+    data.append("cloud_name", "dniaphcwx");
+    fetch("https://api.cloudinary.com/v1_1/dniaphcwx/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setUrl(data.url);
+        setUserInfo({ ...userInfo, image: data.url });
+      })
+      .catch((err) => console.log(err));
+  };
   const registerHandler = () => {
     axios
       .post("http://localhost:5000/user/register", userInfo)
       .then((result) => {
         console.log(result.data.msg);
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  console.log(userInfo);
+  
   return (
     <div>
       <label>
@@ -112,32 +130,30 @@ const Register = () => {
       <br></br>
       <label>
         <span>gender</span>
-        <Select
+        <select
           onChange={(e) => {
-            setUserInfo({ ...userInfo, gender: e.label });
+            setUserInfo({ ...userInfo, gender: e.target.value });
           }}
-          value={MyOptions.value}
-          options={MyOptions}
-          defaultValue={MyOptions[0]}
           required
-        />
+        >
+          <option>Male</option>
+          <option>Female</option>
+        </select>
       </label>
       <br></br>
+      <input
+        type="file"
+        onChange={(e) => {
+          setImage(e.target.files[0]);
+        }}
+      />
+      <br></br>
+      <button onClick={uploadImage}>Upload</button>
+      <br></br>
       <button onClick={registerHandler}>Submit</button>
+      <img src={url}/>
     </div>
   );
 };
 
 export default Register;
-
-/* 
- firstName :{type : String , required:true},
-    lastName :{type:String,required:true},
-    userName :{type:String,required:true},
-    email:{type:String,required:true ,unique: true},
-    password: {type:String,required:true},
-    age :{type:Number,required:true},
-    country:{type:String},
-    gender :{type:String},
-    phoneNumber :{type:String},
-*/

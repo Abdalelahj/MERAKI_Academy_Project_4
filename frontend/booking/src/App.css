@@ -1,11 +1,12 @@
 *{
- margin: 0;
- padding: 0;
- box-sizing: border-box;
-}
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+ }
+ 
 .App{
   display: grid;
   text-align: center;
-  background-color: rgb(169, 213, 213);
+  /* background-color: rgb(169, 213, 213); */
 }

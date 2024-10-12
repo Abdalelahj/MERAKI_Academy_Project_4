@@ -4,12 +4,12 @@ import { sharedInfoContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [userInfo, setUserInfo] = useState({});
-  const { setToken, setLogged ,logged} = useContext(sharedInfoContext);
+  const { setToken, setLogged} = useContext(sharedInfoContext);
   const [msg, setMsg] = useState("");
   const navigate=useNavigate()
 
   const loginHandler = () => {
-    if (Object.keys(userInfo).length !== 0) {
+    if (Object.keys(userInfo).length) {
       axios
         .post("http://localhost:5000/user/login", userInfo)
         .then((result) => {

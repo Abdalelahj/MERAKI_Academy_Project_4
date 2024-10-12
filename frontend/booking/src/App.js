@@ -15,6 +15,7 @@ import Details from "./components/details/Details";
 import BookHotel from "./components/bookHotel/BookHotel";
 import BookFlight from "./components/bookFlight/BookFlight";
 
+
 export const sharedInfoContext = createContext();
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -22,6 +23,7 @@ const App = () => {
   const [dataFound, setDataFound] = useState([]);
   const [showHotel, setShowHotel] = useState(false);
   const [showFlight, setShowFlight] = useState(true);
+  const [info, setInfo] = useState([])
   return (
     <sharedInfoContext.Provider
       value={{
@@ -35,11 +37,13 @@ const App = () => {
         setShowFlight,
         showHotel,
         setShowHotel,
+        info, setInfo
       }}
     >
       <div className="App">
+    
         <Navbar />
-
+   
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/hotels" element={<Hotels />} />

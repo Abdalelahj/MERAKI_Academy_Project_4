@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Results from "../Results/Results";
 import Popup from "../popup/Popup";
 import "./home.css";
+
 const Home = () => {
   const {
     setToken,
@@ -38,8 +39,6 @@ const Home = () => {
     axios
       .get("http://localhost:5000/flight")
       .then((result) => {
-        console.log(result.data.flight);
-
         setFlights(result.data.flight);
       })
       .catch((err) => {
@@ -80,6 +79,8 @@ const Home = () => {
   };
   return (
     <div>
+      
+       
       <h1>Home</h1>
       <button
         onClick={() => {
@@ -174,6 +175,7 @@ const Home = () => {
           {clicked && <Popup msg={"fill the search field "} />}
         </>
       )}
+        
     </div>
   );
 };

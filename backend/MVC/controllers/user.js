@@ -14,6 +14,7 @@ const register = (req, res) => {
     country,
     phoneNumber,
     gender,
+    image,
   } = req.body;
   const newUser = new userModel({
     firstName,
@@ -25,6 +26,7 @@ const register = (req, res) => {
     country,
     phoneNumber,
     gender,
+    image,
   });
   newUser
     .save()
@@ -57,8 +59,8 @@ const login = async (req, res) => {
         const valid = await bcrypt.compare(password, found.password);
         if (valid) {
           try {
-            const userSearch = await userCardModel.find({userId:found._id})
-            if(!userSearch.length){
+            const userSearch = await userCardModel.find({ userId: found._id });
+            if (!userSearch.length) {
               const newUserCard = new userCardModel({
                 userId: found._id,
               });
@@ -72,11 +74,10 @@ const login = async (req, res) => {
             }
           } catch (error) {
             res.status(500).json({
-                  msg: err.message,
-                });
+              msg: err.message,
+            });
           }
-        
-       
+
           const payload = {
             userId: found._id,
             firstName: found.firstName,
@@ -92,7 +93,6 @@ const login = async (req, res) => {
             success: true,
             msg: "user logged in successfully",
             token: token,
-            // user_card:newUserCard
           });
         } else {
           res.status(403).json({
@@ -118,7 +118,92 @@ const login = async (req, res) => {
   }
 };
 
+const updateInfo = async (req, res) => {
+  const { firstName, lastName, email, oldPassword, phoneNumber, newPassword } =
+    req.body;
+  const _id = req.token.userId;
+  if (oldPassword) {
+    try {
+      const lookFor = await userModel.findOne({ _id });
+      if (lookFor) {
+        try {
+          const valid = await bcrypt.compare(oldPassword, lookFor.password);
+          console.log(valid);
+          if (valid) {
+            const hashedNew = await bcrypt.hash(newPassword, 8);
+
+            userModel
+              .findOneAndUpdate({ _id }, { password: hashedNew }, { new: true })
+              .then((info) => {
+                res.status(200).json({
+                  success: true,
+                  updated: info,
+                });
+              })
+              .catch((err) => {
+                res.status(500).json({
+                  success: false,
+                  message: `Server Error`,
+                  error: err.message,
+                });
+              });
+          } else {
+            res.status(400).json({
+              success: false,
+              message: `Not Valid`,
+            });
+          }
+        } catch (error) {
+          res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            error: error.message,
+          });
+        }
+      } else {
+        res.status(400).json({
+          success: false,
+          message: `Not Found`,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        error: error.message,
+      });
+    }
+  } else {
+    userModel
+      .findOneAndUpdate(
+        { _id },
+        { firstName, lastName, email, phoneNumber },
+        { new: true }
+      )
+      .then((result) => {
+        if (Object.keys(result).length) {
+          res.status(200).json({
+            success: true,
+            search: result,
+          });
+        } else {
+          res.status(200).json({
+            success: true,
+            search: "no user",
+          });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({
+          success: false,
+          message: `Server Error`,
+          error: error.message,
+        });
+      });
+  }
+};
 module.exports = {
   register,
   login,
+  updateInfo,
 };
