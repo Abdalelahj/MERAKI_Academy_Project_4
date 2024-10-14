@@ -1,0 +1,13 @@
+/* #iamBig{
+    background-color: blueviolet;
+} */
+
+
+@media screen and (max-width:600px) {
+    #iamBig{
+        background-color: rgb(236, 250, 238);
+    }
+    TextField{
+        width: 10px;
+    }
+}

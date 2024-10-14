@@ -16,7 +16,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import { grey } from "@mui/material/colors";
-
+import { googleLogout } from '@react-oauth/google';
 const Navbar = () => {
   const navigate = useNavigate();
   const { info, logged, setLogged, setToken, setInfo, token } =
@@ -76,6 +76,7 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/");
     setInfo("");
+    googleLogout();
   };
 
   return (

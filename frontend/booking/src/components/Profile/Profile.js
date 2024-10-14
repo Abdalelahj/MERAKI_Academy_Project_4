@@ -1,22 +1,31 @@
 import axios from "axios";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { sharedInfoContext } from "../../App";
 import Popup from "../popup/Popup";
 import { useNavigate } from "react-router-dom";
 const Profile = () => {
-  const { token, info, setInfo } = useContext(sharedInfoContext);
-  const [updateInfo, setUpdateInfo] = useState({
-    firstName: info.firstName,
-    lastName: info.lastName,
-    email: info.email,
-    phoneNumber: info.phoneNumber,
-  });
-  const [hide, setHide] = useState(true);
-  const [success, setSuccess] = useState(false)
-const [message, setMessage] = useState("")
+  const { token, info } = useContext
+  (sharedInfoContext);
 const navigate=useNavigate()
-  
-  const updateHandler = () => {
+
+const [updateInfo, setUpdateInfo] = useState({
+  firstName: info.firstName,
+  lastName: info.lastName,
+  email: info.email,
+  phoneNumber: info.phoneNumber,
+});
+
+
+
+
+const [hide, setHide] = useState(true);
+const [success, setSuccess] = useState(false)
+const [message, setMessage] = useState("")
+
+if(token){
+  console.log(token);
+
+const updateHandler = () => {
     if (Object.keys(updateInfo).length) {
       axios
         .post("http://localhost:5000/user/update", updateInfo, {
@@ -38,10 +47,7 @@ const navigate=useNavigate()
         });
     }
   };
-  const passUpdate=()=>{
-
-    console.log(success);
-    
+  const passUpdate=()=>{    
     if(updateInfo.newPassword===updateInfo.conPassword){
       console.log("matched");
       setSuccess(false)
@@ -166,6 +172,7 @@ const navigate=useNavigate()
       {success&&<Popup msg={message} />}
     </div>
   );
+  }
 };
 
 export default Profile;
