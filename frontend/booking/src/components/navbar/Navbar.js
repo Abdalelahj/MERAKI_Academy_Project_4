@@ -16,10 +16,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import { grey } from "@mui/material/colors";
-import { googleLogout } from '@react-oauth/google';
+import { googleLogout } from "@react-oauth/google";
+import Logout from "@mui/icons-material/Logout";
+import ListItemIcon from "@mui/material/ListItemIcon";
+
 const Navbar = () => {
   const navigate = useNavigate();
-  const { info, logged, setLogged, setToken, setInfo, token } =
+  const { info, logged, setLogged, setToken, setInfo, token, setUserInfo } =
     useContext(sharedInfoContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -77,6 +80,7 @@ const Navbar = () => {
     navigate("/");
     setInfo("");
     googleLogout();
+    setUserInfo({});
   };
 
   return (
@@ -239,13 +243,18 @@ const Navbar = () => {
                     Profile
                   </Typography>
                 </MenuItem>
+
                 <MenuItem onClick={handleCloseUserMenu}>
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
                   <Typography
                     sx={{ textAlign: "center" }}
                     onClick={handleLogOut}
                   >
-                    logout
+                    Logout
                   </Typography>
+                  
                 </MenuItem>
               </Menu>
             </Box>

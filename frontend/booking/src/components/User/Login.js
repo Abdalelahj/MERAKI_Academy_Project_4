@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { sharedInfoContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
@@ -14,31 +14,58 @@ import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const Note = ({ closeToast, toastProps, text }) => (
+  <div>
+    {text}
+    {/* {toastProps.position} */}
+    {/* <button>Retry</button> */}
+    {/* <button onClick={closeToast}>close</button> */}
+  </div>
+);
+
 const Login = () => {
-  const { setToken, setLogged, userInfo, setUserInfo ,isGoogle, setIsGoogle} =
+  const { setToken, setLogged, userInfo, setUserInfo, isGoogle, setIsGoogle ,token } =
     useContext(sharedInfoContext);
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
+
+  const displayMsg = () => {
+    toast(<Note text={"nice"} />);
+  };
   const loginHandler = () => {
     if (Object.keys(userInfo).length) {
       axios
         .post("http://localhost:5000/user/login", userInfo)
         .then((result) => {
-          console.log(result.data);
+          setIsGoogle(false)
+          toast.success(<Note text={"logged in successfully"} />, {
+            position: "top-center",
+            autoClose: 1000,
+            progress: undefined,
+            theme: "light",
+          });
           setToken(result.data.token);
           localStorage.setItem("token", result.data.token);
           setMsg(result.data.success);
-          navigate("/");
           setLogged(true);
           localStorage.setItem("logged", true);
+          setTimeout(() => {
+            navigate("/");
+          }, 1500);
+          return true
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err);
+          
           setMsg(err.response.data.success);
           setTimeout(() => {
             setMsg("");
           }, 2000);
+          return false
         });
     } else {
       setMsg("fields required are empty");
@@ -52,7 +79,6 @@ const Login = () => {
     event.preventDefault();
   };
 
-  console.log(userInfo);
 
   const handleMouseUpPassword = (event) => {
     event.preventDefault();
@@ -72,30 +98,31 @@ const Login = () => {
       .post("http://localhost:5000/user/register", userInfo)
       .then((result) => {
         console.log(result.data.msg);
-        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  useEffect(() => {
-    console.log(msg);
-    if (isGoogle) {
-      // console.log(loginHandler);
-      loginHandler()
-        if(msg===false){
-            console.log("in");
-            
-          registerHandler();
-        }
-      setIsGoogle(false);
-    //  setTimeout(() => {
-    //   loginHandler()
-    //  }, 1000);
-    }
-  }, [userInfo, isGoogle]);
-console.log(msg);
 
+  useEffect( () => {
+      if (isGoogle) {
+        loginHandler();
+        console.log("after login", isGoogle); 
+        if (!token) {
+          registerHandler();
+          setTimeout(() => {
+            loginHandler();
+          }, 1000);
+        }
+      }
+
+      return ()=>{
+        setIsGoogle(false)
+      }
+    
+  }, [isGoogle]);
+
+  
   return (
     <div style={{ backgroundColor: "ButtonShadow", height: "90vh" }}>
       <Box
@@ -152,23 +179,25 @@ console.log(msg);
           </Button>
         </ThemeProvider>
         <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              setIsGoogle(true);
-              const decoded = jwtDecode(credentialResponse?.credential);
-              setUserInfo({
-                ...userInfo,
-                email: decoded.email,
-                firstName: decoded.given_name,
-                image: decoded.picture,
-                password: "google12345",
-              });
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-            context="signup"
-            useOneTap
-          />
+          onSuccess={(credentialResponse) => {
+            setIsGoogle(!isGoogle);
+            const decoded = jwtDecode(credentialResponse?.credential);
+            setUserInfo({
+              ...userInfo,
+              email: decoded.email,
+              firstName: decoded.given_name,
+              image: decoded.picture,
+              password: "google12345",
+            });
+          }}
+          onError={() => {
+            console.log("Login Failed");
+          }}
+          context="signup"
+          useOneTap
+        />
+        <Button onClick={displayMsg}>noti</Button>
+        <ToastContainer />
         {msg && <p>{msg}</p>}
       </Box>
     </div>

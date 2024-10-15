@@ -15,6 +15,8 @@ import Details from "./components/details/Details";
 import BookHotel from "./components/bookHotel/BookHotel";
 import BookFlight from "./components/bookFlight/BookFlight";
 import { GoogleLogin } from '@react-oauth/google';
+import ContextExample from "./components/about/About";
+import ContactUs from "./components/contact/ContactUs";
 
 export const sharedInfoContext = createContext();
 const App = () => {
@@ -59,6 +61,8 @@ const App = () => {
           <Route path="/det/:id" element={<Details />} />
           <Route path="/bookH/:id" element={<BookHotel />} />
           <Route path="/bookF/:id" element={<BookFlight />} />
+          <Route path="/about" element={<ContextExample/>} />
+          <Route path="/contact" element={<ContactUs/>} />
           <Route path="*" element={<NF404 />} />
         </Routes>
       
