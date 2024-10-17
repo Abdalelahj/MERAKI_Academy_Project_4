@@ -1,40 +1,66 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import React, { useState } from "react";
+import Autocomplete from "@mui/material/Autocomplete";
+import cities from "./airports.json";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
+const option = cities.filter((capital, i) => {
+  return capital.name != null && i > 2300 && i <= 4000;
+});
+
+const InputAuto = ({setSearch,search}) => {
+  return (
+    <Autocomplete
+      size="small"
+      id="country-select-demo"
+      sx={{
+        width: 400,
+        height: "2.5em",
+        border: "none",
+        borderRadius: "5px",
+      }}
+      options={option}
+      autoHighlight
+      getOptionLabel={(option) => option.name}
+      renderOption={(props, option) => {
+        const { key, ...optionProps } = props;
+
+        return (
+          <Box
+            key={key}
+            component="li"
+            sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+            {...optionProps}
+          >
+            {option.name}
+          </Box>
+        );
+      }}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Choose destination to a nearest airport"
+          slotProps={{
+            htmlInput: {
+              ...params.inputProps,
+              autoComplete: "new-password",
+            },
+          }}
+        />
+      )}
+      onChange={(e)=>{
+        setSearch({ ...search, destinationTo: e.target.innerText });
+      
+      }}
+      onKeyDown={(e)=>{
+        setSearch({ ...search, destinationTo: e.target.value });
+      }}
+      onSelect={(e)=>{
+        setSearch({ ...search, destinationTo: e.target.value });
+        }}
+      
+    />
+  );
 };
 
-export default function BasicModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-  
- 
-        </Box>
-      </Modal>
-    </div>
-  );
-}
+export default InputAuto;

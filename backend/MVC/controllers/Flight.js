@@ -10,6 +10,7 @@ const flights = (req, res) => {
     timeTo,
     company,
     price,
+    logo
   } = req.body;
 
   const newFlight = new flightModel({
@@ -21,6 +22,7 @@ const flights = (req, res) => {
     dateReturning,
     company,
     price,
+    logo
   });
   newFlight
     .save()

@@ -1,6 +1,87 @@
-/* .parent{
-    border:1px solid rgba(79, 78, 78, 0.663)
+.resultPage{
+    height: 90vh;
+    background-color: #f9f8fa;
 }
-Link{
+
+.parent{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+height: 20vh;
+padding: 2em;
+}
+.timLine{
+    display: flex;
+    flex-direction:column;
+
+}
+.info{
+    display: flex;
+    justify-content: space-between;
+}
+.price{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+.price p{
+    font-size: 4ch;
+}
+.myLink {
+    color: rgb(38, 50, 56);
     text-decoration: none;
-} */
+    cursor: pointer;
+    border-radius: 7px;
+    color: #fff;
+    background: linear-gradient(to right, #4727b0, #2e86e3);
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  }
+  .duration{
+    font-size: 12px;
+    display: flex;
+    gap: 3px;
+  }
+
+.logoWrapper{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+.logoWrapper img{
+    height: 60px;
+}
+.parentHotel{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1em;
+
+}
+  @media screen and (max-width:1000px) {
+    .parent img{
+        width: 130px;
+    }
+    .logoWrapper{
+        display: flex;
+        height:50px;
+        align-items: center;
+    }
+    .price p{
+        font-size: 3ch;
+    }
+    .parentHotel{
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+    }
+    .paperInfo{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+  }

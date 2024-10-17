@@ -1,9 +1,11 @@
-import React from 'react'
-
-const NF404 = () => {
-  return (
-    <div>404</div>
-  )
-}
-
-export default NF404
+import React from 'react';
+import { Button, Result } from 'antd';
+const NoFound = () => (
+  <Result
+    status="404"
+    title="404"
+    subTitle="Sorry, the page you visited does not exist."
+    extra={<Button type="primary" href="/">Back Home</Button>}
+  />
+);
+export default NoFound;

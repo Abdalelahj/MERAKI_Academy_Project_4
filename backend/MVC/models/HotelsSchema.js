@@ -9,7 +9,7 @@ title:{type:String},
 rating:{type:Number},
 numberOfReviews:{type:Number},
 distanceFromCenter:{type:String},
-numberOfRooms:{type:String ,required:true},
+numberOfRooms:{type:Number ,required:true},
 price:{type:String},
 })
 

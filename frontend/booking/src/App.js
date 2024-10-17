@@ -2,7 +2,6 @@ import React, { createContext, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/Home/Home";
-import NF404 from "./components/404/404";
 import Hotels from "./components/hotels/Hotels";
 import Flights from "./components/flights/Flights";
 import Payments from "./components/payment/Payments";
@@ -17,6 +16,7 @@ import BookFlight from "./components/bookFlight/BookFlight";
 import { GoogleLogin } from '@react-oauth/google';
 import ContextExample from "./components/about/About";
 import ContactUs from "./components/contact/ContactUs";
+import NoFound from "./components/404/404";
 
 export const sharedInfoContext = createContext();
 const App = () => {
@@ -63,7 +63,7 @@ const App = () => {
           <Route path="/bookF/:id" element={<BookFlight />} />
           <Route path="/about" element={<ContextExample/>} />
           <Route path="/contact" element={<ContactUs/>} />
-          <Route path="*" element={<NF404 />} />
+          <Route path="*" element={<NoFound/>} />
         </Routes>
       
         

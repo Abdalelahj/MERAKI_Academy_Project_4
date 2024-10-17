@@ -17,6 +17,7 @@ import { jwtDecode } from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const Note = ({ closeToast, toastProps, text }) => (
   <div>
     {text}
@@ -61,7 +62,7 @@ const Login = () => {
         .catch((err) => {
           console.log(err);
           
-          setMsg(err.response.data.success);
+          // setMsg(err.response.data);
           setTimeout(() => {
             setMsg("");
           }, 2000);
@@ -97,7 +98,7 @@ const Login = () => {
     axios
       .post("http://localhost:5000/user/register", userInfo)
       .then((result) => {
-        console.log(result.data.msg);
+        console.log(result);
       })
       .catch((err) => {
         console.log(err);
@@ -107,13 +108,6 @@ const Login = () => {
   useEffect( () => {
       if (isGoogle) {
         loginHandler();
-        console.log("after login", isGoogle); 
-        if (!token) {
-          registerHandler();
-          setTimeout(() => {
-            loginHandler();
-          }, 1000);
-        }
       }
 
       return ()=>{
@@ -182,6 +176,8 @@ const Login = () => {
           onSuccess={(credentialResponse) => {
             setIsGoogle(!isGoogle);
             const decoded = jwtDecode(credentialResponse?.credential);
+            console.log(decoded);
+            
             setUserInfo({
               ...userInfo,
               email: decoded.email,
