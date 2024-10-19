@@ -20,13 +20,14 @@ import NoFound from "./components/404/404";
 
 export const sharedInfoContext = createContext();
 const App = () => {
+
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [logged, setLogged] = useState(localStorage.getItem("logged"));
   const [dataFound, setDataFound] = useState([]);
   const [showHotel, setShowHotel] = useState(false);
   const [showFlight, setShowFlight] = useState(true);
   const [info, setInfo] = useState([]);
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState({});
   const [isGoogle, setIsGoogle] = useState(false);
   return (
     <sharedInfoContext.Provider

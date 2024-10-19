@@ -21,9 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Note = ({ closeToast, toastProps, text }) => (
   <div>
     {text}
-    {/* {toastProps.position} */}
-    {/* <button>Retry</button> */}
-    {/* <button onClick={closeToast}>close</button> */}
+
   </div>
 );
 

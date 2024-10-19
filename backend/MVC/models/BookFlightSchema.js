@@ -9,7 +9,7 @@ const BookFlightSchema = new mongoose.Schema({
   birthDate: { type: String, required: true },
   nationality: { type: String ,required:true},
   passportNumber: { type:String ,required:true},
-  expiry: { type: String,required:true },
+  expiry: { type: Date,required:true },
   flightId: { type: mongoose.Schema.Types.ObjectId, ref: "Flights" },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });

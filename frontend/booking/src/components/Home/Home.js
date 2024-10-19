@@ -4,16 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Popup from "../popup/Popup";
 import "./home.css";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import BasicModal from "./Model";
 import { Flex, Input, InputNumber } from "antd";
 import InputL from "./FlightInp";
-import { AutoComplete } from "antd";
-import cities from "./airports.json";
 import HotelInp from "./HotelInp";
 import Frequent from "./Questions";
 import { Divider } from "antd";
@@ -80,22 +72,19 @@ const Home = () => {
       navigate(`/results `);
     }
   };
-  // console.log(flights);
-  
-  console.log(search);
-  const filtered = cities.filter((capital, i) => {
-    return capital.name != null && i > 2300 && i <= 4000;
-  });
-  const options = filtered.map((item, i) => {
-    return { value: item.name };
-  });
+
+console.log(showFlight);
+
   return (
     <div className="home">
       <div className="boton">
         <button
           onClick={() => {
+
             setShowHotel(false);
             setShowFlight(true);
+            // localStorage.setItem("showF",true)
+            // localStorage.setItem("showH","")
           }}
           className={showFlight ? "active" : "notActive"}
           id="btn"
@@ -107,6 +96,8 @@ const Home = () => {
           onClick={() => {
             setShowFlight(false);
             setShowHotel(true);
+            // localStorage.setItem("showH",true)
+            // localStorage.setItem("showF","")
           }}
           className={showHotel ? "active" : "notActive"}
           id="btn"
@@ -117,15 +108,7 @@ const Home = () => {
       <div>
         {showHotel && (
           <>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                rowGap: "4em",
-              }}
-              className="parentInp"
-            >
+            <div className="parentInpH">
               <div
                 style={{ display: "flex", gap: "1em", alignItems: "center" }}
                 className="innerDiv"
@@ -171,7 +154,7 @@ const Home = () => {
                 Search
               </button>
               {clicked && <Popup msg={"fill the search field "} />}
-            </Box>
+            </div>
           </>
         )}
 
@@ -288,26 +271,16 @@ const Home = () => {
           </div>
           <Explore />
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-            top: "2em",
-            marginBottom: "2em",
-            gap: "1em",
-          }}
-        >
+        <div className="frqMom">
           <span style={{ alignSelf: "self-start", marginLeft: "7em" }}>
             Frequent questions
           </span>
+          <div className="frq">
+
           <Frequent />
+          </div>
         </div>
-        <div>
-          footer
-        </div>
+        <div>footer</div>
       </div>
     </div>
   );

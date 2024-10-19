@@ -2,8 +2,10 @@ import React from "react";
 import "./home.css"
 const Explore = () => {
   return (
-    <div>
-      <ul style={{ display: "flex", gap: "2em" }}>
+    <div >
+      <ul style={{ display: "flex", gap: "2em" }}
+      className="explore"
+      >
         <li className="no" >
           <a
             target="_blank"

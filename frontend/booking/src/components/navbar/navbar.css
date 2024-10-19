@@ -1,0 +1,7 @@
+@media screen and (max-width:1000px) {
+    .appB{
+        width:46.9em;
+        /* background-color: blueviolet; */
+        color: black;
+    }
+}

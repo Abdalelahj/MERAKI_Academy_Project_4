@@ -1,5 +1,6 @@
 import React from 'react';
 import { Collapse } from 'antd';
+import "./home.css"
 const text_1 = `
  You can find the room and property facilities in your booking confirmation.
 `;
@@ -39,6 +40,6 @@ const Frequent = () => {
     console.log(key);
   };
   return <Collapse   size="small" items={items} defaultActiveKey={['1']} onChange={onChange} 
-  style={{width:1300,textAlign:"start"}} />;
+  style={{width:1300,textAlign:"start"}} className='frq'/>;
 };
 export default Frequent;

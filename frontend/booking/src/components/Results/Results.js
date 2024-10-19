@@ -7,20 +7,19 @@ import Grid from "@mui/material/Grid2";
 import Container from "@mui/material/Container";
 import TimeS from "./Slider";
 import { CgTime } from "react-icons/cg";
+import { Rate } from "antd";
 const Results = () => {
   const { dataFound, showFlight, showHotel } = useContext(sharedInfoContext);
   const navigate = useNavigate();
+
+
+console.log("h",showHotel);
+console.log("f",showFlight);
+
+
   return (
     <div className="resultPage">
       <Container>
-        <h1>Results</h1>
-        <button
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          Home
-        </button>
         {dataFound.length && showHotel ? (
           <div className="parentHotel">
             {dataFound.map((item) => {
@@ -28,14 +27,38 @@ const Results = () => {
                 <Paper elevation={5} className="paperInfo">
                   <img src={item.image} />
 
-                  <div>
-                    <p>{item.title}</p>
-                    <p>{item.rating}</p>
-                    <p>{item.numberOfReviews}</p>
+                  <div className="ratingInfo">
+                    <h3>{item.title}</h3>
+                    <Rate disabled defaultValue={item.rating} />
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "3px",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <p>
+                        {(
+                          Math.round(
+                            ((item.rating * item.numberOfReviews) /
+                              (item.numberOfReviews * 5)) *
+                              10 *
+                              10
+                          ) / 10
+                        ).toFixed(1)}
+                      </p>
+                      <p>({item.numberOfReviews} Reviews)</p>
+                    </div>
                   </div>
-                  <div>
-                    <p>{item.price}</p>
-                    <Link to={`/det/${item._id}`}>See more details</Link>
+                  <div className="pricing">
+                    <div>
+                      <p>{item.price}</p>
+                      <span>For one night + taxes</span>
+                    </div>
+                    <Link className="myLink" to={`/det/${item._id}`}>
+                      View deal
+                    </Link>
                   </div>
                 </Paper>
               );

@@ -1,6 +1,7 @@
 .resultPage{
     height: 90vh;
     background-color: #f9f8fa;
+    padding: 2em;
 }
 
 .parent{
@@ -61,9 +62,31 @@ padding: 2em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1em;
+    height: 23rem;
+}
+.ratingInfo{
+display: flex;
+flex-direction:column;
+padding: 10px;
+}
+.pricing{
+    display: flex;
+    flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   gap:20px
+}
 
+.paperInfo img{
+width: 350px;
+height: 250px;
 }
   @media screen and (max-width:1000px) {
+    .resultPage{
+        height: 90vh;
+        background-color: #f9f8fa;
+        padding: 2em 1em;
+    }
     .parent img{
         width: 130px;
     }
@@ -83,5 +106,27 @@ padding: 2em;
     .paperInfo{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        width: 43em;
     }
+    .paperInfo img{
+        width: 300px;
+    }
+    .ratingInfo{
+        display: flex;
+        flex-direction:column;
+        gap: 10px;
+        padding: 10px;
+        }
+        .pricing{
+            display: flex;
+            flex-direction: column;
+           justify-content: space-evenly;
+           align-items: center;
+        }
+        .pricing p{
+            font-size: 3ch;
+        }
+        .pricing span{
+            font-size: 1.5ch;
+        }
   }

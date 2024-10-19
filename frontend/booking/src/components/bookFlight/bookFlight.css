@@ -1,0 +1,157 @@
+.parentInputat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  padding: 2em;
+}
+.parentInputat label {
+  display: flex;
+  gap: 2em;
+}
+.titleFlight {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5em;
+  align-self: flex-start;
+  padding: 1em;
+  gap: 0.1em;
+}
+.titleFlight p {
+  font-size: 12px;
+  color: gray;
+  align-self: flex-start;
+  margin-left: 2em;
+}
+.svIn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  height: 50vh;
+  padding: 1em;
+  justify-content: center;
+  justify-items: center;
+}
+
+.svIn_1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    align-content: start;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    justify-self:flex-end;
+    padding: 1em;
+}
+.svIn_2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1em;
+    align-content: start;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1em; 
+    justify-self: flex-start;
+}
+.inpB {
+  width: 400px;
+}
+.gender {
+  display: flex;
+  align-self: flex-start;
+  margin-left: 6em;
+  gap: 5em;
+}
+
+.submitB {
+  cursor: pointer;
+  border-radius: 7px;
+  color: #fff;
+  background: linear-gradient(to right, #4727b0, #2e86e3);
+  border: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  align-self: end;
+  margin-left: 80%;
+}
+
+.extrapop {
+  position: absolute;
+  padding: 1.2vw 2.344vw 0px;
+  width: 60%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  align-items: center;
+  top: 25%;
+  right: 25%;
+  border-radius: 7px;
+}
+
+@media screen and (max-width:1000px) {
+    .svIn {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        height: 80vh;
+        padding: 1em;
+        justify-content: center;
+        justify-items: center;
+      }
+      
+.svIn_1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: start;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    justify-self:flex-start;
+    padding: 1em;
+    gap: 1em;
+}
+.svIn_2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: start;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    justify-self:flex-start;
+    padding: 1em;
+    gap: 1em;
+}
+.svIn_2 label{
+    gap:1em
+}
+.submitB{
+    margin-left: 30%;
+}
+
+.extrapop {
+    position: absolute;
+    padding: 1.2vw 2.344vw 0px;
+    width: 70%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fcf8f8;
+    align-items: center;
+    top: 30%;
+    right: 20%;
+    border-radius: 7px;
+    height: 35vh;
+  }
+}

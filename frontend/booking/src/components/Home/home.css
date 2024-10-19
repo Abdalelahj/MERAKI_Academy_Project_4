@@ -5,10 +5,10 @@
   background-color: #f9f8fa;
   justify-content: space-between;
 }
-.contentParent{
-    display: flex;
-    flex-direction: column;
-    gap: 7em;
+.contentParent {
+  display: flex;
+  flex-direction: column;
+  gap: 7em;
 }
 .notActive {
   width: 4em;
@@ -21,8 +21,8 @@
   cursor: pointer;
 }
 .no {
-    display: block
-  }
+  display: block;
+}
 .active {
   width: 4em;
   height: 3em;
@@ -72,7 +72,7 @@
   font-family: "Ubuntu", sans-serif;
   font-size: 13px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-  margin-right: 50%;
+  margin-right: 70%;
 }
 
 .inp {
@@ -124,6 +124,15 @@
   margin-top: 4%;
   text-align: start;
 }
+.parentInpH {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 50px;
+  width: 100%;
+  margin-top: 4%;
+  text-align: start;
+}
 .innerDiv {
   width: 100%;
   display: flex;
@@ -167,7 +176,7 @@
 .logos img {
   height: 30px;
 }
- #text {
+#text {
   display: flex;
   flex-direction: column;
   text-align: start;
@@ -177,10 +186,10 @@
   flex-wrap: wrap;
 }
 
-.popPlaces{
-display: grid;
-grid-template-columns: 0.2fr 1fr;
-gap: 2em;
+.popPlaces {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  gap: 2em;
 }
 
 @media screen and (max-width: 750px) {
@@ -210,20 +219,44 @@ gap: 2em;
     width: 500px !important;
   }
 }
+.frqMom{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+    /* top: 2em; */
+    margin-bottom: 2em;
+    gap: 1em
 
+}
 @media screen and (max-width: 1000px) {
+  .home{
+    width: 46.9em;
+    height: 270vh;
+  }
   .parentInp {
     display: flex;
-    align-items: end;
+    flex-direction: column;
+    gap: 50px;
+    width: 46em;
+    margin-top: 8%;
+    text-align: start;
+    align-items: center;
+  }
+  .parentInpH {
+    display: flex;
+    flex-direction: column;
     gap: 50px;
     width: 100%;
     margin-top: 8%;
     text-align: start;
+    align-items: end;
   }
   .innerDiv {
     width: 100%;
     display: flex;
-    align-items: end;
     justify-content: flex-end;
     margin-right: 10%;
   }
@@ -246,5 +279,56 @@ gap: 2em;
     width: 550px !important;
     border-radius: 7px;
     border: 1px solid rgba(128, 128, 128, 0.358);
+  }
+  .logos {
+    gap: 1em 0.2em;
+  }
+  .posterImg {
+    width: 46em;
+    gap: 0;
+  }
+  .logoP {
+    width: 46em;
+  }
+  #text {
+    width: 9em;
+  }
+  #text p {
+    font-size: 12px;
+  }
+  #text h4 {
+    font-size: 14px;
+  }
+  .explore {
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 42em; */
+    /* gap: 5em; */
+
+  }
+  .no img{
+    width: 150px;
+  }
+  .popPlaces{
+    display: grid;
+    grid-template-columns: 0.1fr 1fr;
+  }
+  .frqMom{
+    display: flex;
+    flex-direction: column;
+    width: 40em;
+    padding: 20px;
+  }
+  .frq{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 35em;
+    margin-left: 4em;
+  }
+  .submit{
+    margin-right: 50%;
   }
 }

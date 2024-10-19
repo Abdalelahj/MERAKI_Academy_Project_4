@@ -26,9 +26,16 @@ const pay = async (req, res) => {
           payment: newPayment,
           total: result,
         });
-        userCardModel.deleteMany()
+        userCardModel.findOneAndUpdate({userId:userId},
+          {
+            hotelId:null,
+            flightId:null
+          }
+          ,{new:true}
+        )
           .then((res) => {
-            console.log("after Removal", res);
+            console.log(res);
+            
           })
           .catch((err) => {
             res.status(500).json({

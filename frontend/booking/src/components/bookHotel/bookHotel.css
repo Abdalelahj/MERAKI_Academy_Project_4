@@ -1,0 +1,82 @@
+.parentHotelB {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  justify-content: center;
+  height: 90vh;
+  gap: 1em;
+  padding: 5em 3em;
+}
+.reqInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90vh;
+  gap: 1em;
+  align-content: start;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: start;
+  padding: 5em 3em;
+}
+.submitH {
+  cursor: pointer;
+  border-radius: 7px;
+  color: #fff;
+  background: linear-gradient(to right, #4727b0, #2e86e3);
+  border: 0;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 14px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  align-self: end;
+}
+
+.parentHotelB label {
+  display: flex;
+  gap: 1em;
+}
+.headerHot {
+    display: flex;
+    flex-direction: column;
+    gap: 5em;
+    text-align: start;
+  }
+  .headerHot p{
+    color: gray;
+  }
+
+@media screen and (max-width: 1000px) {
+  .parentHotelB {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    height: 90vh;
+    gap: 0em;
+    padding: 5em 3em;
+  }
+  .reqInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh;
+    gap: 1em;
+    align-content: start;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: start;
+    padding: 5em 3em;
+  }
+  .headerHot {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    
+  }
+  .headerHot p{
+    color: gray;
+  }
+}

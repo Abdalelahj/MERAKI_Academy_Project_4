@@ -10,6 +10,7 @@ const [payInfo, setPayInfo] = useState({})
 const [price, setPrice] = useState({})
 const [successfully, setSuccessfully] = useState(false)
 const navigate=useNavigate()
+const [hotelPrice, setHotelPrice] = useState({})
   useEffect(() => {
     axios
       .get(`http://localhost:5000/info`, {
@@ -20,8 +21,8 @@ const navigate=useNavigate()
       .then((result) => {
         console.log(result);
         console.log(result.data.secretInfo[0].hotelId.price);
-        setPrice({...price,hotelPrice:result.data.secretInfo[0]?.hotelId.price , flightPrice:result.data.secretInfo[0].flightId?.price})
-  
+        setPrice({...price,flightPrice:result.data.secretInfo[0].flightId?.price})
+  setHotelPrice({...hotelPrice,hotel :result.data.secretInfo[0].hotelId.price})
       })
       .catch((err) => {
         console.log(err);
@@ -46,8 +47,16 @@ const navigate=useNavigate()
       
     })
   }
+
+  console.log(price);
+
+  console.log(hotelPrice);
+  console.log(showFlight);
+  console.log(showHotel);
+  
   return <div>
-    <h3>{showHotel&&<>required payment : {price?.hotelPrice}</>}</h3>
+    
+    <h3>{showHotel&&<>required payment : {hotelPrice?.hotel}</>}</h3>
     <h3>{showFlight&&<>required payment : {price?.flightPrice}</>}</h3>
         <label>
         <span>Name</span>

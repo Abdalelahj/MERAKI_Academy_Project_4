@@ -19,7 +19,7 @@ import { grey } from "@mui/material/colors";
 import { googleLogout } from "@react-oauth/google";
 import Logout from "@mui/icons-material/Logout";
 import ListItemIcon from "@mui/material/ListItemIcon";
-
+import "./navbar.css"
 const Navbar = () => {
   const navigate = useNavigate();
   const { info, logged, setLogged, setToken, setInfo, token, setUserInfo } =
@@ -84,7 +84,10 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <div className="appB">
+
+   
+    <AppBar position="static" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <TravelExploreIcon
@@ -282,6 +285,7 @@ const Navbar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    </div>
   );
 };
 

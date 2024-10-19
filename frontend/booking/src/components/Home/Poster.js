@@ -1,8 +1,10 @@
 import React from "react";
-
+import "./home.css"
 const Poster = () => {
   return (
-    <div style={{display:"flex",justifyContent: "center", gap:"2em"}}>
+    <div style={{display:"flex",justifyContent: "center", gap:"2em" }} 
+    className="posterImg"
+    >
         <div >
           <img
             alt="proposition"
