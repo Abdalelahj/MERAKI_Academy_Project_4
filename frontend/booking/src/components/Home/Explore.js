@@ -20,8 +20,8 @@ const Explore = () => {
               loading="lazy"
             />
 
-            <h3>العقبة</h3>
-            <div>173 مكان إقامة</div>
+            <h3>Aqaba</h3>
+            <div>173 accommodations</div>
           </a>
         </li>
 
@@ -41,8 +41,8 @@ const Explore = () => {
               />
 
               <div>
-                <h3>البحر الميت الأردن</h3>
-                <div>30 مكان إقامة</div>
+                <h3>Dead sea </h3>
+                <div>30 accommodations</div>
               </div>
             </div>
           </a>
@@ -63,8 +63,10 @@ const Explore = () => {
               />
 
               <div>
-                <h3 data-testid="webcore-carousel-title">عمّان</h3>
-                <div>616 مكان إقامة</div>
+                <h3 data-testid="webcore-carousel-title">Amman
+
+                </h3>
+                <div>616 accommodations</div>
               </div>
             </div>
           </a>
@@ -87,9 +89,9 @@ const Explore = () => {
               />
 
               <div>
-                <h3>وادي رم</h3>
+                <h3>Wadi Rum</h3>
                 <div >
-                  327 مكان إقامة
+                327 accommodations
                 </div>
               </div>
             </div>
@@ -112,8 +114,8 @@ const Explore = () => {
               />
 
               <div >
-                <h3>إربد</h3>
-                <div>29 مكان إقامة</div>
+                <h3>Irbid</h3>
+                <div>29 accommodations</div>
               </div>
             </div>
           </a>
@@ -134,8 +136,8 @@ const Explore = () => {
               />
 
               <div>
-                <h3>جرش</h3>
-                <div>47 مكان إقامة</div>
+                <h3>Jerash</h3>
+                <div>47 accommodations</div>
               </div>
             </div>
           </a>

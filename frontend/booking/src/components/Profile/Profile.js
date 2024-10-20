@@ -220,7 +220,7 @@ const updateHandler = () => {
             onClick={passUpdate}
             className="submit_C"
           >
-            ok
+            Ok
           </button>
           </div>
         </>

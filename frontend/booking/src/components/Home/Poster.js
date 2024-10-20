@@ -1,67 +1,54 @@
 import React from "react";
-import "./home.css"
+import "./home.css";
 const Poster = () => {
   return (
-    <div style={{display:"flex",justifyContent: "center", gap:"2em" }} 
-    className="posterImg"
+    <div
+      style={{ display: "flex", justifyContent: "center", gap: "2em" }}
+      className="posterImg"
     >
-        <div >
-          <img
-            alt="proposition"
-            src="https://zen.wego.com/web/illustrations/look-no-further.png"
-            height="100"
-            width="100"
-          />
-          <div >
-            أفضل تطبيقات السفر في الأردن
-          </div>
-          <div>
-            حاصل على تقييم عال في متجر التطبيقات وغوغل بلاي
-          </div>
-        </div>
+      <div>
+        <img
+          alt="proposition"
+          src="https://zen.wego.com/web/illustrations/look-no-further.png"
+          height="100"
+          width="100"
+        />
+        <div>Best Travel Apps in Jordan</div>
+        <div>Highly rated on App Store and Google Play</div>
+      </div>
+      <div>
+        <img
+          alt="proposition"
+          src="https://zen.wego.com/web/illustrations/shop-with-confidence.png"
+          height="100"
+          width="100"
+        />
+        <div>Final prices</div>
+        <div>No additional taxes or fees.</div>
+      </div>
+      <div>
+        <img
+          alt="proposition"
+          src="https://zen.wego.com/web/illustrations/pay-the-way-you-want.png"
+          height="100"
+          width="100"
+        />
+        <div>Wide payment options</div>
+        <div>Search results that match your preferred payment methods</div>
+      </div>
+      <div>
+        <img
+          alt="proposition"
+          src="https://zen.wego.com/web/illustrations/instant-booking.png"
+          height="100"
+          width="100"
+        />
+        <div>Faster and easier booking</div>
         <div>
-          <img
-            alt="proposition"
-            src="https://zen.wego.com/web/illustrations/shop-with-confidence.png"
-            height="100"
-            width="100"
-          />
-          <div>
-            أسعار نهائيّة
-          </div>
-          <div>
-            لا ضرائب أو رسوم إضافية{" "}
-          </div>
+        Search, compare and book at maximum speed with elite providers.
+          
         </div>
-        <div>
-          <img
-            alt="proposition"
-            src="https://zen.wego.com/web/illustrations/pay-the-way-you-want.png"
-            height="100"
-            width="100"
-          />
-          <div>
-            خيارات دفع واسعة{" "}
-          </div>
-          <div >
-            نتائج بحث تناسب وسائل الدفع المفضلة لديك
-          </div>
-        </div>
-        <div >
-          <img
-            alt="proposition"
-            src="https://zen.wego.com/web/illustrations/instant-booking.png"
-            height="100"
-            width="100"
-          />
-          <div >
-            حجز أسرع وأسهل
-          </div>
-          <div >
-            ابحث، قارن ثم احجز بسرعة قصوى مع نخبة المزودين
-          </div>
-        </div>
-     
+      </div>
     </div>
   );
 };

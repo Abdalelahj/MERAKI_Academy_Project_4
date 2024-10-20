@@ -11,6 +11,7 @@ import Frequent from "./Questions";
 import { Divider } from "antd";
 import Explore from "./Explore";
 import Poster from "./Poster";
+import InputAuto from "./Model";
 const Home = () => {
   const { setDataFound, showHotel, setShowHotel, showFlight, setShowFlight } =
     useContext(sharedInfoContext);
@@ -280,7 +281,10 @@ console.log(showFlight);
           <Frequent />
           </div>
         </div>
-        <div>footer</div>
+        <div style={{marginTop:"4em"}}>
+
+        <InputAuto/>
+        </div>
       </div>
     </div>
   );

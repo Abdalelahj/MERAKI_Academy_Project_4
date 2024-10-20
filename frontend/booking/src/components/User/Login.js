@@ -17,11 +17,10 @@ import { jwtDecode } from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
+import "./login.css"
 const Note = ({ closeToast, toastProps, text }) => (
   <div>
     {text}
-
   </div>
 );
 
@@ -32,9 +31,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
 
-  const displayMsg = () => {
-    toast(<Note text={"nice"} />);
-  };
+  
   const loginHandler = () => {
     if (Object.keys(userInfo).length) {
       axios
@@ -60,10 +57,10 @@ const Login = () => {
         .catch((err) => {
           console.log(err);
           
-          // setMsg(err.response.data);
+          setMsg(err.response.data.msg);
           setTimeout(() => {
             setMsg("");
-          }, 2000);
+          }, 3000);
           return false
         });
     } else {
@@ -116,14 +113,14 @@ const Login = () => {
 
   
   return (
-    <div style={{ backgroundColor: "ButtonShadow", height: "90vh" }}>
+    <div style={{ backgroundColor: "#f9f8fa", height: "90vh" }}>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           marginTop: "8em",
           alignItems: "center",
-          rowGap: "1em",
+          rowGap: "2em",
         }}
       >
         <FormControl sx={{ m: 1, width: "60ch" }} variant="standard">
@@ -170,6 +167,9 @@ const Login = () => {
             Login
           </Button>
         </ThemeProvider>
+        </Box>
+        <div className="googleLog">
+          <p> Or by</p>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
             setIsGoogle(!isGoogle);
@@ -190,10 +190,11 @@ const Login = () => {
           context="signup"
           useOneTap
         />
-        <Button onClick={displayMsg}>noti</Button>
-        <ToastContainer />
+        </div>
+       
+       <ToastContainer/>
         {msg && <p>{msg}</p>}
-      </Box>
+     
     </div>
   );
 };

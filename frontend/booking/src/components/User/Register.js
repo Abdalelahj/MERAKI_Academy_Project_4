@@ -362,10 +362,15 @@ const Register = () => {
             flexDirection: "column",
             alignContent: "center",
             alignItems: "center",
-            gap: "10em",
+            gap: "1em",
+            justifyContent:"space-around"
           }}
         >
           {" "}
+          <div style={{display:"flex",flexDirection:"column",
+          gap:"1em"
+          }}>
+            <span style={{fontSize:"12px" ,color:"gray"}}>*optional</span>
           <Button
             component="label"
             role={undefined}
@@ -383,6 +388,15 @@ const Register = () => {
             />
           </Button>
           <Button onClick={uploadImage}>done</Button>
+          </div>
+         
+
+
+          <div style={{display:"flex",
+            flexDirection:"column",
+            gap:"1em"
+          }}>
+            <p>Or sign up by</p>
           <GoogleLogin
             onSuccess={(credentialResponse) => {
               setIsGoogle(true);
@@ -401,6 +415,9 @@ const Register = () => {
             context="signup"
             useOneTap
           />
+
+          </div>
+         
         </Box>
        
       </Box>
