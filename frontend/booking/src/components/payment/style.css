@@ -1,0 +1,43 @@
+.parentPay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    gap: 2em;
+
+}
+
+.payInp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    align-content: start;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    justify-self:flex-end;
+    padding: 1em;
+}
+
+.payInp label{
+display: flex;
+gap: 1em;
+align-items: center;
+}
+
+.submit_pay{
+    cursor: pointer;
+    border-radius: 7px;
+    color: #fff;
+    background: linear-gradient(to right, #4727b0, #2e86e3);
+    border: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 14px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    align-self: center;
+}

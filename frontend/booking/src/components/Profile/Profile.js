@@ -3,6 +3,9 @@ import React, { useState, useContext } from "react";
 import { sharedInfoContext } from "../../App";
 import Popup from "../popup/Popup";
 import { useNavigate } from "react-router-dom";
+import { Input } from "antd";
+import { Button, Result,Modal } from "antd";
+import "./style.css"
 const Profile = () => {
   const { token, info } = useContext
   (sharedInfoContext);
@@ -15,7 +18,7 @@ const [updateInfo, setUpdateInfo] = useState({
   phoneNumber: info.phoneNumber,
 });
 
-
+const [passUpdateN, setPassUpdateN] = useState({})
 
 
 const [hide, setHide] = useState(true);
@@ -23,7 +26,7 @@ const [success, setSuccess] = useState(false)
 const [message, setMessage] = useState("")
 
 if(token){
-  console.log(token);
+  // console.log(token);
 
 const updateHandler = () => {
     if (Object.keys(updateInfo).length) {
@@ -48,11 +51,12 @@ const updateHandler = () => {
     }
   };
   const passUpdate=()=>{    
+    if(Object.keys(passUpdateN).length>0){
     if(updateInfo.newPassword===updateInfo.conPassword){
       console.log("matched");
       setSuccess(false)
       axios
-        .post("http://localhost:5000/user/update", updateInfo, {
+        .post("http://localhost:5000/user/update", passUpdateN, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -61,11 +65,19 @@ const updateHandler = () => {
           console.log(result);
           setMessage("updated successfully")
           setSuccess(true)
-          setTimeout(() => {
-            setSuccess(false)
-            navigate("/")
-
-          }, 2000);
+         Modal.success({
+            title: 'Password updated successfully',
+            content: ``,
+            footer: (_, { OkBtn, CancelBtn }) => (
+              <>
+                <Button href="/" >Back Home</Button>
+                <Button href="/login" >Stay</Button>
+                
+       
+                
+              </>
+            ),
+          });
         })
         .catch((err) => {
           console.log(err);
@@ -78,54 +90,84 @@ const updateHandler = () => {
       }, 2000);
       return  setSuccess(true)
     }
+  }else{
+    Modal.error({
+      title: 'Fill all fields',
+      content: 'All fields are required',
+      footer: (_, { OkBtn, CancelBtn }) => (
+        <>
+          <CancelBtn />
+          <OkBtn />
+        </>
+      ),
+    });
+  }
     
   }
+
+  console.log(passUpdateN);
+  
   return (
     <div>
+      <div className="imageCont">
       <img src={info.image} height={"250px"} />
+
+      </div>
       <br></br>
       <br></br>
+      <div className="proInp">
       <label>
         <span>first Name</span>
-        <input
-          defaultValue={info.firstName}
-          onChange={(e) => {
-            setUpdateInfo({ ...updateInfo, firstName: e.target.value });
-          }}
-        />
+        <Input
+             defaultValue={info.firstName}
+              className="inpB"
+              onChange={(e) => {
+                setUpdateInfo({ ...updateInfo, firstName: e.target.value });
+              }}
+            />
       </label>
-      <br></br>
+    
       <label>
         <span>Last Name</span>
-        <input
-          defaultValue={info.lastName}
-          onChange={(e) => {
-            setUpdateInfo({ ...updateInfo, lastName: e.target.value });
-          }}
-        />
+        <Input
+                 defaultValue={info.lastName}
+              className="inpB"
+              onChange={(e) => {
+                setUpdateInfo({ ...updateInfo, lastName: e.target.value });
+              }}
+            />
+       
       </label>
-      <br></br>
+    
       <label>
         <span>Email</span>
-        <input
-          defaultValue={info.email}
-          onChange={(e) => {
-            setUpdateInfo({ ...updateInfo, email: e.target.value });
-          }}
-        />
+        <Input
+                 defaultValue={info.email}
+              className="inpB"
+              onChange={(e) => {
+                setUpdateInfo({ ...updateInfo, email: e.target.value });
+              }}
+            />
+       
+     
       </label>
-      <br></br>
+    
       <label>
         <span>phone Number</span>
-        <input
-          defaultValue={info.phoneNumber}
-          onChange={(e) => {
-            setUpdateInfo({ ...updateInfo, phoneNumber: e.target.value });
-          }}
-        />
+        <Input
+                 defaultValue={info.phoneNumber}
+              className="inpB"
+              onChange={(e) => {
+                setUpdateInfo({ ...updateInfo, phoneNumber: e.target.value });
+              }}
+            />
+       
+     
       </label>
-      <br></br>
-      <button onClick={updateHandler}>Save</button>
+      </div>
+   
+     
+      <Button onClick={updateHandler}>Save</Button>
       <br></br>
       {hide ? (
         <a
@@ -138,38 +180,52 @@ const updateHandler = () => {
         </a>
       ) : (
         <>
+        <div className="passUpd">
           <label>
             <span>old password</span>
-            <input
+            <Input
+            type="password"
+              className="inpB"
               onChange={(e) => {
-                setUpdateInfo({ ...updateInfo, oldPassword: e.target.value });
+                setPassUpdateN({ ...passUpdateN, oldPassword: e.target.value });
               }}
             />
+          
           </label>
-          <br></br>
+       
           <label>
             <span>New password</span>
-            <input    onChange={(e) => {
-                setUpdateInfo({ ...updateInfo, newPassword: e.target.value });
+            <Input
+             type="password"
+              className="inpB"
+              onChange={(e) => {
+                setPassUpdateN({ ...passUpdateN, newPassword: e.target.value });
               }}
             />
           </label>
-          <br></br>
+       
           <label>
             <span>confirm password</span>
-            <input onChange={(e) => {
-                setUpdateInfo({ ...updateInfo, conPassword: e.target.value });
-              }} />
+            <Input
+             type="password"
+              className="inpB"
+              onChange={(e) => {
+                setPassUpdateN({ ...passUpdateN, conPassword: e.target.value });
+              }}
+            />
+           
           </label>
-          <br></br>
+   
           <button
             onClick={passUpdate}
+            className="submit_C"
           >
             ok
           </button>
+          </div>
         </>
       )}
-      {success&&<Popup msg={message} />}
+      {/* {success&&<Popup msg={message} />} */}
     </div>
   );
   }

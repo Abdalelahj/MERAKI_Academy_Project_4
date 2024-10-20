@@ -1,0 +1,36 @@
+.proInp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    justify-self:flex-end;
+    padding: 1em;
+}
+.proInp label{
+    display: flex;
+    gap: 1em;
+}
+.passUpd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 2em;
+}
+.passUpd label{
+    display: flex;
+    flex-direction: column;
+}
+.imageCont{
+    padding: 16px;
+
+}
+.imageCont img{
+    width: 25%;
+    border-radius: 50%;
+    height: 300px;
+}

@@ -13,8 +13,7 @@ const Results = () => {
   const navigate = useNavigate();
 
 
-console.log("h",showHotel);
-console.log("f",showFlight);
+
 
 
   return (
@@ -83,7 +82,7 @@ console.log("f",showFlight);
                           <p>{item.destinationFrom}</p>
                         </div>
                         <div className="duration">
-                          <p>2h:30min</p>
+                          <p>2h</p>
                           <CgTime size={14} />
                         </div>
                         <div>
